@@ -1,0 +1,26 @@
+CREATE DATABASE exercises2_2;
+USE exercises2_2;
+CREATE TABLE products(
+  pId INT AUTO_INCREMENT PRIMARY KEY,
+  pName VARCHAR(255) NOT NULL,
+  pPrice DOUBLE NOT NULL
+);
+
+CREATE TABLE customers(
+	cId INT AUTO_INCREMENT PRIMARY KEY,
+	cName VARCHAR(255) NOT NULL,
+    cAge INT NOT NULL
+);
+
+CREATE TABLE orders(
+	oId INT AUTO_INCREMENT PRIMARY KEY,
+    FOREIGN KEY (cId) REFERENCES customers(cId),
+    oDate DATETIME,
+    oTotalPrice DOUBLE
+);
+
+CREATE TABLE orderDetail(
+  FOREIGN KEY (oId) REFERENCES orders(oId),
+  FOREIGN KEY (pId) REFERENCES products(pId),
+  odQuantity INT
+);
